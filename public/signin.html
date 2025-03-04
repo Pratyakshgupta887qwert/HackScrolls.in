@@ -4,31 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Sign Up</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Login Form -->
-        <div id="login-form" class="form">
-            <h2>Login</h2>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button id="login-btn">Login</button>
-            <p>Don't have an account? <a id="signup-link" href="#" onclick="showSignUp()">Sign Up</a></p>
-        </div>
-
-        <!-- Sign-up Form -->
-        <div id="signup-form" class="form">
-            <h2>Sign Up</h2>
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required>
-            <button id="signup-btn">Sign Up</button>
-            <p>Already have an account? <a id="login-link" href="#" onclick="showLogin()">Login</a></p>
-        </div>
-    </div>
     <script type="module" src="firebaseauth.js"></script>
     <script src="script.js"></script>
+</head>
+<body style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+    margin: 0;
+    font-family: Arial, sans-serif;
+">
+    <div class="container" style="
+        width: 300px;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+    ">
+        <!-- Login Form yaah sei chalu jo raha hai-->
+        <div id="login-form" class="form">
+            <h2 style="margin-bottom: 15px;">Login</h2>
+            <input type="email" placeholder="Email" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            ">
+            <input type="password" placeholder="Password" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            ">
+            <button id="login-btn" style="
+                width: 100%;
+                padding: 10px;
+                background: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            " onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007BFF'">
+                Login
+            </button>
+            <p style="margin-top: 10px;">Don't have an account? 
+                <a id="signup-link" href="#" onclick="showSignUp()" style="
+                    color: #007BFF;
+                    text-decoration: none;
+                " onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+                    Sign Up
+                </a>
+            </p>
+        </div>
+
+        <!-- Sign-up Form chalu ho gaya yaah sei -->
+        <div id="signup-form" class="form" style="display: none;">
+            <h2 style="margin-bottom: 15px;">Sign Up</h2>
+            <input type="text" placeholder="Full Name" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            ">
+            <input type="email" placeholder="Email" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            ">
+            <input type="password" placeholder="Password" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            ">
+            <input type="password" placeholder="Confirm Password" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            ">
+            <button id="signup-btn" style="
+                width: 100%;
+                padding: 10px;
+                background: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            " onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007BFF'">
+                Sign Up
+            </button>
+            <p style="margin-top: 10px;">Already have an account? 
+                <a id="login-link" href="#" onclick="showLogin()" style="
+                    color: #007BFF;
+                    text-decoration: none;
+                " onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+                    Login
+                </a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
