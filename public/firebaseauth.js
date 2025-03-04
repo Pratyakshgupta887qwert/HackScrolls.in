@@ -28,59 +28,62 @@ const signupLink = document.getElementById("signup-link");
 const loginLink = document.getElementById("login-link");
 
 // Toggle between login and sign-up forms
-signupLink.addEventListener("click", function (event) {
-    event.preventDefault();
-    loginForm.classList.add("hidden");
-    signupForm.classList.remove("hidden");
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("signup-link").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("login-form").classList.add("hidden");
+        document.getElementById("signup-form").classList.remove("hidden");
+    });
+
+    document.getElementById("login-link").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("signup-form").classList.add("hidden");
+        document.getElementById("login-form").classList.remove("hidden");
+    });
 });
 
-loginLink.addEventListener("click", function (event) {
-    event.preventDefault();
-    signupForm.classList.add("hidden");
-    loginForm.classList.remove("hidden");
-});
 
 // Sign-up user
-document.getElementById("signup-btn").addEventListener("click", async function () {
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-    const confirmPassword = document.getElementById("signup-confirm-password").value;
-    const name = document.getElementById("signup-name").value; // Get user's name
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("signup-btn").addEventListener("click", async function () {
+        const email = document.getElementById("signup-email").value;
+        const password = document.getElementById("signup-password").value;
+        const confirmPassword = document.getElementById("signup-confirm-password").value;
+        const name = document.getElementById("signup-name").value;
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-    }
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
 
-    try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
 
-        // Store user info in Firestore
-        await setDoc(doc(db, "users", user.uid), {
-            name: name,
-            email: email,
-            uid: user.uid
-        });
+            await setDoc(doc(db, "users", user.uid), {
+                name: name,
+                email: email,
+                uid: user.uid
+            });
 
-        alert("Sign-up successful! You can now log in.");
-        signupForm.classList.add("hidden");
-        loginForm.classList.remove("hidden");
-    } catch (error) {
-        alert(error.message);
-    }
-});
+            alert("Sign-up successful! You can now log in.");
+            document.getElementById("signup-form").classList.add("hidden");
+            document.getElementById("login-form").classList.remove("hidden");
+        } catch (error) {
+            alert(error.message);
+        }
+    });
 
-// Log in user
-document.getElementById("login-btn").addEventListener("click", async function () {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
+    document.getElementById("login-btn").addEventListener("click", async function () {
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
 
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful!");
-        window.location.href = "dashboard.html"; // Redirect to a dashboard or home page
-    } catch (error) {
-        alert(error.message);
-    }
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            alert("Login successful!");
+            window.location.href = "dashboard.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
 });
