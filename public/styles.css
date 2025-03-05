@@ -6,24 +6,147 @@
 }
 
 body {
+    line-height: 1.6;
+}
+
+.container-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: #f4f4f4;
+    height: 100vh;  /* Takes full viewport height */
+    width: 100%;
 }
 
 .container {
     width: 300px;
     padding: 20px;
     background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 
 h2 {
     margin-bottom: 15px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d3436;
+    text-decoration: none;
+}
+
+.nav-links-container {
+    flex-grow: 1; /* Allows it to take up the space */
+    display: flex;
+    justify-content: center; /* Centers the menu bubble */
+}
+
+.nav-bubble {
+    background-color: #0984e3;
+    padding: 0.8rem 2rem;
+    border-radius: 50px; /* Makes it a rounded bubble */
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #dfe6e9;
+}
+
+.signup-container {
+    margin-left: auto;
+}
+
+.signup-btn {
+    background-color: #0984e3;
+    color: white !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-btn:hover {
+    background-color: #0069c0;
+}
+
+.hero-section {
+    padding: 5rem 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f5f6fa;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.subtitle {
+    color: #0984e3;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.highlight {
+    color: #0984e3;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #636e72;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.learn-more-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: #0984e3;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.learn-more-btn:hover {
+    background-color: #0069c0;
 }
 
 input {
