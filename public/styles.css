@@ -5,8 +5,36 @@
     font-family: Arial, sans-serif;
 }
 
+:root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+.dark-mode {
+    --bg-color: rgb(42, 42, 42);
+    --text-color: white;
+}
+
 body {
     line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#darkModeToggle {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+}
+
+
+.theme-changer {
+    padding: 0.5rem 1.5rem;
+    display: flex; 
 }
 
 .container-wrapper {
@@ -37,14 +65,13 @@ h2 {
     display: flex;
     align-items: center;
     padding: 1.5rem 5%;
-    background-color: #ffffff;
+    background-color: (--bg-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
 }
 
 .logo a {
     font-size: 24px;
     font-weight: bold;
-    color: #2d3436;
     text-decoration: none;
 }
 
@@ -104,7 +131,7 @@ h2 {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    background-color: #f5f6fa;
+    background-color: var(--bg-color);
 }
 
 .hero-content {
@@ -126,7 +153,6 @@ h2 {
 
 .description {
     font-size: 1.1rem;
-    color: #636e72;
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
