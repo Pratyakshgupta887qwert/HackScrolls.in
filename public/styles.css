@@ -19,7 +19,7 @@ body {
     line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.1s ease, color 0.1s ease;
 }
 
 #darkModeToggle {
@@ -71,6 +71,7 @@ h2 {
 
 .logo a {
     font-size: 24px;
+    color: gray;
     font-weight: bold;
     text-decoration: none;
 }
@@ -82,7 +83,7 @@ h2 {
 }
 
 .nav-bubble {
-    background-color: #0984e3;
+    background-color: gray;
     padding: 0.8rem 2rem;
     border-radius: 50px; /* Makes it a rounded bubble */
     display: flex;
@@ -112,7 +113,7 @@ h2 {
 }
 
 .signup-btn {
-    background-color: #0984e3;
+    background-color: gray;
     color: white !important;
     padding: 0.5rem 1.5rem;
     border-radius: 25px;
@@ -122,7 +123,7 @@ h2 {
 }
 
 .signup-btn:hover {
-    background-color: #0069c0;
+    background-color: gray;
 }
 
 .hero-section {
@@ -140,7 +141,7 @@ h2 {
 }
 
 .subtitle {
-    color: #0984e3;
+    color: gray;
     font-size: 1.2rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
@@ -148,7 +149,7 @@ h2 {
 }
 
 .highlight {
-    color: #0984e3;
+    color: gray;
 }
 
 .description {
@@ -162,7 +163,7 @@ h2 {
 .learn-more-btn {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background-color: #0984e3;
+    background-color: gray;
     color: white;
     text-decoration: none;
     border-radius: 30px;
@@ -171,7 +172,7 @@ h2 {
 }
 
 .learn-more-btn:hover {
-    background-color: #0069c0;
+    background-color: gray;
 }
 
 input {
@@ -185,7 +186,7 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background: #007BFF;
+    background: gray;
     color: white;
     border: none;
     border-radius: 5px;
@@ -193,7 +194,7 @@ button {
 }
 
 button:hover {
-    background: #0056b3;
+    background: var(--bg-color);
 }
 
 p {
@@ -201,7 +202,7 @@ p {
 }
 
 a {
-    color: #007BFF;
+    color: gray;
     text-decoration: none;
 }
 
