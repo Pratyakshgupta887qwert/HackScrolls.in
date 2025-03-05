@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 uid: user.uid
             });
 
-            alert("Sign-up successful! You can now log in.");
             document.getElementById("signup-form").classList.add("hidden");
             document.getElementById("login-form").classList.remove("hidden");
         } catch (error) {
@@ -80,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            alert("Login successful!");
             window.location.href = "dashboard.html";
         } catch (error) {
             alert(error.message);

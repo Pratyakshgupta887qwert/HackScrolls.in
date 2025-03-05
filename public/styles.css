@@ -1,16 +1,38 @@
-/* Reset and global styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
     line-height: 1.6;
 }
 
-/* Navigation styles */
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* Takes full viewport height */
+    width: 100%;
+}
+
+.container {
+    width: 300px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
 .navbar {
     display: flex;
     align-items: center;
@@ -19,7 +41,6 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
 .logo a {
     font-size: 24px;
     font-weight: bold;
@@ -27,14 +48,12 @@ body {
     text-decoration: none;
 }
 
-/* Centering navigation links inside a bubble */
 .nav-links-container {
     flex-grow: 1; /* Allows it to take up the space */
     display: flex;
     justify-content: center; /* Centers the menu bubble */
 }
 
-/* Navigation bubble */
 .nav-bubble {
     background-color: #0984e3;
     padding: 0.8rem 2rem;
@@ -44,7 +63,6 @@ body {
     gap: 1.5rem;
 }
 
-/* Navigation links inside the bubble */
 .nav-links {
     display: flex;
     list-style: none;
@@ -62,7 +80,6 @@ body {
     color: #dfe6e9;
 }
 
-/* Push Sign Up | Login button to the right */
 .signup-container {
     margin-left: auto;
 }
@@ -81,7 +98,6 @@ body {
     background-color: #0069c0;
 }
 
-/* Hero section styles */
 .hero-section {
     padding: 5rem 5%;
     display: flex;
@@ -102,12 +118,6 @@ body {
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-}
-
-h1 {
-    font-size: 3.5rem;
-    color: #2d3436;
-    margin-bottom: 1.5rem;
 }
 
 .highlight {
@@ -138,17 +148,46 @@ h1 {
     background-color: #0069c0;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* You'll need JavaScript to handle mobile menu */
-    }
-    
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-section {
-        padding: 3rem 5%;
-    }
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+p {
+    margin-top: 10px;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Fix the visibility issue */
+#signup-form {
+    display: none;
+}
+
+.hidden {
+    display: none;
 }
