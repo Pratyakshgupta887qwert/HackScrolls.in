@@ -218,3 +218,82 @@ a:hover {
 .hidden {
     display: none;
 }
+
+
+
+/* Notes Section Styling */
+.notes-container {
+    padding: 5rem 5%;
+    text-align: center;
+    min-height: 80vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.notes-title {
+    font-size: 2rem;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.notes-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.note-card {
+    background: gray;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.note-card:hover {
+    transform: scale(1.05);
+}
+
+.note-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: white;
+    color: #0984e3;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 2px solid #0984e3;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.download-btn:hover {
+    background-color: #0984e3;
+    color: white;
+}
+
+.read-btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: white;
+    color: #0984e3;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 2px solid #0984e3;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.read-btn:hover {
+    background-color: #0984e3;
+    color: white;
+}
