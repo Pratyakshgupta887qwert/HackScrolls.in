@@ -83,29 +83,44 @@ h2 {
 }
 
 .nav-bubble {
-    background-color: gray;
+    background-color: #2d3436;
     padding: 0.8rem 2rem;
-    border-radius: 50px; /* Makes it a rounded bubble */
+    border-radius: 50px;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 1.2rem;             /* Increased gap between buttons */
+    align-items: center;      /* Center align buttons */
 }
 
-.nav-links a {
-    text-decoration: none;
+.nav-links li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
     color: white;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 16px;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 25px;
 }
 
-.nav-links a:hover {
-    color: #dfe6e9;
+.nav-btn:hover {
+    background-color: #404754;
+    transform: translateY(-1px);
+}
+
+.nav-btn.active {
+    background-color: #353b48;
 }
 
 .signup-container {
@@ -113,17 +128,20 @@ h2 {
 }
 
 .signup-btn {
-    background-color: gray;
-    color: white !important;
-    padding: 0.5rem 1.5rem;
+    background-color: #2d3436;
+    color: white;
+    padding: 8px 20px;
     border-radius: 25px;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    font-weight: 600;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .signup-btn:hover {
-    background-color: gray;
+    background-color: #404754;
+    transform: translateY(-1px);
 }
 
 .hero-section {
@@ -186,16 +204,17 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background: #0984e3;
+    background: #2d3436;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #0069c0;
+    background: #404754;
 }
 
 p {
