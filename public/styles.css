@@ -186,15 +186,16 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background: gray;
+    background: #0984e3;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 button:hover {
-    background: var(--bg-color);
+    background: #0069c0;
 }
 
 p {
