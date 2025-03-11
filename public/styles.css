@@ -258,7 +258,7 @@ a:hover {
 }
 
 .notes-list {
-    max-width: 900px;
+    max-width: 1700px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -303,19 +303,19 @@ a:hover {
 
 .read-btn {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
+    width: 50%;
     background-color: white;
-    color: #0984e3;
+    color: rgb(43, 42, 42);
     text-decoration: none;
     border-radius: 25px;
-    border: 2px solid #0984e3;
+    border: 3x solid rgb(0, 0, 0);
     transition: all 0.3s ease;
     font-weight: 600;
     margin-top: 1rem;
 }
 
 .read-btn:hover {
-    background-color: #0984e3;
+    background-color: rgb(43, 42, 42);
     color: white;
 }
 
@@ -472,3 +472,4 @@ a:hover {
         text-align: center;
     }
 }
+
