@@ -10,7 +10,7 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <H1>HackScrolls.in</H1>
+                <h1>HackScrolls.in</h1>
             </div>
             <div class="nav-links-container">
                 <div class="nav-bubble">
@@ -31,12 +31,97 @@
             </div>
         </nav>
     </header>
-    <main>
 
+    <main>
+        <div class="content-container">
+        <div class="nav-container">
+            <nav>
+                <ul class="nav-link">
+                    <li><a href="#Intro">Introduction</a></li>
+                    <li><a href="#wiv">What is Vue ?</a></li>
+                    <li><a href="#TheProgressiveFramework">The Progressive Framework</a></li>
+                    <li><a href="#Single-FileComponents">Single-File Components</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="card">
+            <div id="markdown-content">
+                <div>
+                    <h1 id="Intro">Introduction</h1>
+                    <hr />
+                    <h2 id="wiv">What is Vue ?</h2>
+                    <ul>
+                        <li>It is a Javascript framework for building user interfaces. It builds an top of standard HTML, CSS, and JavaScript and provides a declarative, components-based programming model that helps you efficienly develop user interfaces of any complexity. </li>
+                        <li>Here's a minimal example:</li>    
+                    </ul>
+                </div>
+<!--code block please avoid any unnecessary white space-->
+<div>                
+<pre><code>import { createApp, ref } from 'vue'
+                    
+createApp({
+    setup() {
+        return {
+            count: ref(0)11
+        }
+    }
+}).mount('#app')</code></pre>        
+
+<pre><code>&lt;div id="app"&gt;
+  &lt;button @click="count++"&gt;
+    Count is: {{ count }}
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+</div>
+<!--code blocks ends here-->
+                <div>
+                    The above example demonstrates the two core features of Vue:
+                    <ul>
+                        <li><b>Declarative Rendering:</b> Vue extends standard HTML with a template syntax that allows us to declaratively describe HTML output based on JavaScript state. </li>
+                        <li><b>Reactivity:</b> Vue automatically tracks JavaScript state changes and efficiently updates the DOM when changes happen.</li>
+                    </ul>
+                    <hr/>
+
+                    <h2 id="TheProgressiveFramework">The Progressive Framework</h2>
+                    <p>Vue cover most of the common features needed in frontend development. But the web is extremely diverse- the things we build on the web may vary drastically in form and scale. With that in mind , Vue is designed to be flexible and incrementally adoptable. Depending on your use case, Vue can be used in different ways:</p> <br/>
+                    <ul>
+                        <li>Enhancing static HTML without a build step.</li>
+                        <li>Embedding as Web Components on any page.</li>
+                        <li>Single-Page Application (SPA).</li>
+                        <li>Fullstack / Server-Side Rendering (SSR).</li> 
+                        <li>Jamstack / Static Site Generation (SSG).</li> 
+                        <li>Targeting desktop, mobile, WebGL, and even the terminal.</li> 
+                    </ul>
+                    <hr/>
+                    <h2 id="Single-FileComponents">Single-File Components</h2>
+                    <p>In most build-tool-enabled Vue projects, Vue components are authored using an HTML-like file format called <b>Single-File Component</b> (also known as <code>*.vue</code> files, abbreviated as SFC), A Vue SFC, as the name suggests, encapsulates the component's logic (JavaScript), template (HTML), and styles (CSS) in a single file. Here's the previous example, written in SFC format:</p>
+                </div>
+<!--code block begins-->
+<div>
+<pre><code>&lt;script setup&gt;
+import { ref } from 'vue'
+const count = ref(0)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button @click="count++"&gt;Count is: {{ count }}&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+button {
+  font-weight: bold;
+}
+&lt;/style&gt;</code></pre>
+</div>
+<!--code blocks ends-->
+                
+            </div>
+            </div>
     </main>
+
     <footer id="footer" class="footer">
         <div class="footer-container">
-            <!-- Social Media Section -->
             <div class="social-media">
                 <h3>📢 Follow Us</h3>
                 <div class="social-icons">
@@ -47,15 +132,13 @@
                 </div>
             </div>
     
-            <!-- Visit Section -->
             <div class="visit-section">
                 <h3>📍 Visit Us</h3>
                 <p>123 Learning Street, Knowledge City, World</p>
-                <p>📧 Email: <a href="contact@hackscrolls.in" target="_blank"> contact@hackscrolls.in</a></p>
+                <p>📧 Email: <a href="mailto:contact@hackscrolls.in">contact@hackscrolls.in</a></p>
                 <p>📞 Phone: +123 456 7890</p>
             </div>
     
-            <!-- Explore Section -->
             <div class="explore-section">
                 <h3>🔍 Explore</h3>
                 <ul>
@@ -68,13 +151,14 @@
             </div>
         </div>
     
-        <!-- Small Thought Section -->
         <div class="small-thought">
             <p>“The beautiful thing about learning is that no one can take it away from you.” – B.B. King</p>
         </div>
         
-        <!-- Copyright Section -->
         <p>&copy; 2025 HackScrolls. All Rights Reserved.</p>
     </footer>
+
+    <!-- JavaScript at the bottom for proper loading -->
+    <script src="darkmode.js"></script>
 </body>
 </html>
