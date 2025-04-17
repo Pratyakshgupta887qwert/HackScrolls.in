@@ -115,9 +115,556 @@ button {
 &lt;/style&gt;</code></pre>
 </div>
 <!--code blocks ends-->
+                <div><p>SFC is a defining feature. It is the recommended way to author Vue components if you your use case warrants if you your use case warrants a build setup.</p></div>
+                <hr/>
+                <h2>API Styles</h2>
+                Vue components can authored in two different API styles: <b>Options API</b> and <b>Composition API.</b>
+                <h3>Options API</h3>
+                <ul>
+                    <li><p>With this API, we define a component's logic using an object of options such as <code>data</code>, <code>methods</code> and <code>mounted.</code> Properties defined by options are exposed on <code>this</code> inside functions, which points to the components instance.</p></li>                
+                </ul>
+<!--code block begins-->
+<div>
+<pre><code>&lt;script&gt;
+    export default {
+        data() {
+            return {
+            count: 0
+        }
+    },
+    methods: {
+        increment() {
+        this.count++
+        }
+    },
+    mounted() {
+        console.log(`The initial count is ${this.count}.`)
+        }
+    }
+&lt;/script&gt;
+      
+&lt;template&gt;
+    &lt;button @click="increment"&gt;Count is: {{ count }}&lt;/button&gt;
+&lt;/template&gt;</code></pre>      
+</div>
+<!--code blocks ends-->
+                <div>
+                    <h3>Composition API</h3>
+                    <ul>
+                        <li>Using this API, we define a component's logic using import API functions. In SFCs, Composition API is typically used with <code>&ltscript setup&gt</code>. The <code>setup</code> attribute is a hint that makes a Vue perform compile-time transforms that allow us to use Composition API with less boilerplate. For example, imports and top-level variables / functions declared in <code>&ltscriptsetup&gt</code> are directly usuable in the template.</li>
+                        <li>The following is the same component, with the exact same template, but using Composition API and <code>&ltscript setup&gt</code> instead:</li>
+                    </ul>
+                </div>
+<!--code block begins-->
+<div>
+    <pre><code>&ltscript setup&gt
+import { ref, onMounted } from 'vue'
+
+// reactive state
+const count = ref(0)
+
+// functions that mutate state and trigger updates
+functions increment() {
+    count.value++
+}
+
+// lifestyle hooks
+onMounted(() => {
+    console.log('The initial count is ${count.value}')
+})
+&lt/script&gt
+
+&lttemplate&gt
+    &ltbutton @click="increment&gtCount is: {{count}}&lt/button&gt
+&lt/template&gt</code></pre>
+</div>
+<!--code blocks ends-->
+
+                <div>
+                    <h3>Which API to Choose?</h3>
+                    <ul>
+                        <li><p>Both the Options API and Composition API in Vue share the same underlying system and can handle common use cases. The Options API, built on top of the Composition API, follows a class-based structure, making it beginner-friendly and familiar to those with an OOP background. It enforces organization through predefined options. In contrast, the Composition API provides more flexibility by defining reactive state within functions, allowing for better logic reuse and composition but requiring a deeper understanding of Vue's reactivity system.</p></li>
+                        <li>If you are new to Vue, here's a general recommendation:</li>
+                            <ul>
+                                <li>For learning purposes, go with the style that looks easier understand to you. Again, most of the core concepts are shared between the two styles. You can always pick up the other style later.</li>
+                                <li>For production use:</li>
+                                    <ul>
+                                        <li>Go with Options API if you are not using build tools, or plan to use Vue primarily in low-complecity scenarios, e.g. progessice enchancement.</li>
+                                        <li>Go with Composition API + Single-File Components if you plan to build full applications with Vue.</li>
+                                    </ul>
+                            </ul>
+                        <li>You don't really have to commit to only one style during the learning phase.</li>
+                    </ul>
+                </div>
+                <hr/>
+                <div>
+                    <h1>Quick Start</h1>
+                    <hr/>
+                </div>
+                <div>
+                    <h2>Creating a Vue Application</h2>
+                    <ul>
+                        <li>This section, explains how to scaffold a Vue Single Page Application on your local machine. (this project will be using a build setup based on Vite and it will allow us to use Vue Single-File 'SFCs')</li>
+                        <li>Now, make sure that you have the latest Node.js version. And check if you are currently in you project directory.</li>
+                        <li>Run the following command:</li>
+                    </ul>
+<div>
+    <pre><code>npm create vue@latest</code></pre>
+</div>
+                    <ul>
+                        <li>This command will install and execute create-vue. You will be presented with prompts for several optional features such as typescript and testing support.</li>
+                    </ul>
+<!--code block begins-->
+<div>
+    <pre><code>✔ Project name: … &ltyour-project-name&gt
+✔ Add TypeScript? … No / Yes
+✔ Add JSX Support? … No / Yes
+✔ Add Vue Router for Single Page Application development? … No / Yes
+✔ Add Pinia for state management? … No / Yes
+✔ Add Vitest for Unit testing? … No / Yes
+✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+✔ Add ESLint for code quality? … No / Yes
+✔ Add Prettier for code formatting? … No / Yes
+✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+        
+Scaffolding project in ./&ltyour-project-name&gt...
+Done.</code></pre>
+</div>
+<!--code block ends-->
+                <ul>
+                    <li>If you are unsure about any option, simply choose `No` by hitting enter for now. Once the project is created, follow the instructions to install the dependencies and start the development server: </li>   
+<!--code block begins-->
+<div>
+    <pre><code>cd &ltyour-project-name&gt
+npm install
+npm run dev</code></pre>
+</div> 
+<!--code block ends-->     
+                    <li>When you are ready to ship your app to production, run the following: </li>
+                 
+<!--code block begins--> 
+<div>
+    <pre><code>npm run build</code></pre>
+</div>               
+                    <li>This will create a production-ready app in your project's <code>./dist</code> directory.</li>     
+                </ul>
+                <hr/>
+                </div>
                 
+                <div>
+                    <h2>Creating a Vue Application</h2>
+                    <hr/>
+                    <h3>The application instance:</h3>
+                    <p>Every vue application starts by creating a new application instance with a the <code>createApp</code> function:</p>
+<!--code block begins-->
+<div>
+    <pre><code>import { createApp } from 'vue'
+
+const app = createApp({
+  /* root component options */
+})</code></pre>
+</div>
+<!--code block ends-->
+                    <h3>The Root Component</h3>
+                    <ul>
+                        <li>The object we are passing into `createApp` is in fact a component. Every app requires a "root component" that can contain other components as its childern.</li>
+                        <li>If you are using Single-File Components, we typically import the root component from another file:</li>
+<!--code block begins-->
+<div>
+    <pre><code>import { createApp } from 'vue'
+// import the root component App from a single-file component.
+import App from './App.vue'
+
+const app = createApp(App)</code></pre>
+</div>
+<!--code block ends-->
+                        <li>While many examples in this guide only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application's component tree might look like this: </li>
+<!--code block begins-->
+<div>
+    <pre><code>App (root component)
+├─ TodoList
+│  └─ TodoItem
+│     ├─ TodoDeleteButton
+│     └─ TodoEditButton
+└─ TodoFooter
+   ├─ TodoClearButton
+   └─ TodoStatistics</code></pre>
+</div>
+<!--code block ends-->
+                    </ul>
+                    <h3>Mounting the App </h3>
+                    <p>An application instance won't render anything until its `.mount()` method is called. It expects a "container" argument, which can either be an actual DOM element or a selector string: </p>
+<!--code block begins-->
+<div>
+    <pre><code>&ltdiv id="app"&gt&lt/div&
+        
+app.mount('#app')/code></code></pre>
+</div>
+<!--code block ends-->
+                    <P>The content of the app's root component will be rendered inside the container element. The container element itself is not considered part of the app.<Br/>The <code>.mount()</code> method should always be called after all app configurations and asset registrations are done. Also note that its return value, unlike the asset registration methods, is the root component instance instead of the application instance.</P>
+
+                    <h3>In-DOM Root Component Template</h3>
+                    <p>The template for the root component is usually part of the component itself, but it is also possible to provide the template separately by writing it directly inside the mount container: </p>
+<!--code block begins-->
+<div>
+    <Pre><code>&ltdiv id="app"&gt
+  &ltbutton @click="count++"&gt{{ count }}&lt/button&gt
+&lt/div&gt
+    </code></Pre>
+</div>
+<div>
+    <pre><code>import { createApp } from 'vue'
+
+const app = createApp({
+  data() {
+    return {
+      count: 0
+    }
+  }
+})
+
+app.mount('#app')</code></pre>
+</div>
+<!--code block ends-->
+                    <p>Vue will automatically use the container's <code>innerHTML</code> as the template of the root component does not alrady have a <code>template</code> option.</p>
+                    <p>In-Dom templates are mostly used in application that are using Vue without a build step. They can also be used in conjuctions with server-side frameworks,where the root template might be generated dynamically by the server. </p>
+                    <h3>App Configurations</h3>
+                    <p>The application instance exposes a <code>.config</code> object that allows us to configurea few app-level options, for example, defininf an app-level error handler that captures errors form all descendant components: </p>
+<!--code block begins-->
+<div>
+    <pre><code>app.config.errorHandler = (err) => {
+  /* handle error */
+}</code></pre>
+</div>
+<!--code block ends-->
+                    <p>The application instance also provides a few methods for registering app-scoped assets. For-example, registering app-scoped assets. For example, registering a component: </p>
+<!--code block begins-->
+<div>
+    <pre><code>app.component('TodoDeleteButton', TodoDeleteButton)</code></pre>
+</div>
+<!--code block ends-->
+                    <p>This makes the <code>TodoDeleteButton</code> available for use anywhere is our app. Make sure to apply all app configuraton before mounting the app.</p>
+                    <h3>Multiple application instances</h3>
+                    <p>You are not limited to a single application instance on the same page. The <code>createApp</code> API allows multiple Vue applicaition to co-exist on the same page, each with its own scope fro configuration and global assets: </p>
+<!--code block begins-->
+<div><pre><code>const app1 = createApp({
+    /* ... */
+})
+app1.mount('#container-1')
+
+const app2 = createApp({
+  /* ... */
+})
+app2.mount('#container-2')</code></pre></div>
+<!--code block ends-->
+                    <p>if you are using Vue to enchance server-rendered HTML and only need Vue to control specific parts of a large page, avoid mounting a single Vue application instance on the entire page. Instead, create a multiple small application instances and mount them on the elements they are responsible for.</p>
+                    <hr/>
+                </div>
+                <div>
+                  <h2>Template Syntax</h2>
+                  <hr/>
+                  <p>Vue uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying component instance's data. All Vue templates are syntatically valid HTML that can be parsers.</p>
+                  <p>Under the hood, Vue compiles th templates into highly-optimized JavaScript code. Combined with the reactivity system, Vue can intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.</p>
+                  <h3>Text Interpolation</h3>
+                  <p>The most basic form of data binding is text interpolation using the "Musctache" syntax (double curly braces):</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&ltspan&gtMessage: {{ msg }}&lt/span&gt</code></pre>
+</div>
+<!-- code block ends-->
+                  <p>The musctache tag will be replaced with the value of the <code>msg</code> property from the corresponding instance. It will also be updated whenever <code>msg</code> property changes. </p>
+                  <h3>Raw HTML</h3>
+                  <p>The double mustache interpret the data as plain text, not HTMK. In order to output real HTML, you will need to use the <code>v-html</code> directive:</p>
+<div>
+  <pre><code>&ltp&gtUsing text interpolation: {{ rawHTML }}&lt/p&gt
+&ltp&gtUsing v-html directive: &ltspan v-html="rawHTML"&gt&lt/span&gt&lt/p&gt</code></pre>
+</div>
+                   <p>Here we're encountering something new. The <code>v-html</code> attribute you're seeing is called a directive. Directive are prefixed with v- to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behaviour to the rendered DOM. Here, we're basically saying "keep the element's inner HTML up-to-date with real <code>rawHTML</code> property on the current active instance"</p>
+                   <p>The contents of the <code>span</code> will be replaced with the value of the <code>rawHTML</code> property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use <code>v-html</code> to compose template partials, because Vue is not a string-based templating engine. Instead, components are preffered as the fundamental unit for UI reuse and composition.</p>
+                   <h4>Note:-</h4>
+                   <p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easiy lead to <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS vulnerabilities</a>. Only use &ltv-html&gt on trusted content and <b>never</b> on user-provided content.</p> 
+                   <h3>Attribute Bindings</h3>
+                   <p>Mustaches cannot be used inside HTML attributes. Instead, use a v-bind directive: </p>
+<!--code block begins-->
+<div>
+  <pre><code>&ltdiv v-bind:id="dynamicId"&gt&lt/div&gt</code></pre> 
+</div>
+<!-- code block ends-->
+                  <p>The v-bind directive instructs Vue to keep the element's <code>id</code> attribute in sync with the component's <code>dynamicId</code> property. If the bound value is <code>null</code> or <code>undefined</code>, then the attribute will be removed from the rendered element.e</p>
+                  <h3>Shorthand</h3>
+                  <p>Because <code>v-bind</code> is so commonly used, it has a dedicated shorthand yntax:</p>
+<!-- code block begins-->
+<div>
+  <pre><code>&ltdiv :id="dynamicId"&gt&lt/div&gt</code></pre>
+</div>
+<!--code block ends-->
+                  <p>Attributes that start with <code>:</code> may look different from normal HTML, but it is a fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. In addition, they donot appear in the final redered markup. The shorthand syntax is optional, but you will likely appreciate it when you learn mroe amount its usage later.</p>
+                  <h3>Same-name Shorthand</h3>
+                  <ul>
+                    <li>only supported in 3.4+</li>
+                  </ul>
+                  <p>If the attribute has the same name with the JavaScript value being bound, the syntax can be further shortened to omit the attribute value:</p>
+<!-- code block begins-->
+<div>
+  <pre><code>&lt !-- same as :id="id"-- &gt
+&ltdiv :id&gt&lt/div&gt 
+
+&lt !-- this also work -- &gt
+&ltdiv v-bind:id&gt&lt/div&gt</code></pre>
+</div>      
+<!-- code block ends-->
+                  <p>This is similar to the property shorthand syntax when declaring objects in JavaScript. Note this is a feature that is only available in Vue3.4 and above.</p>
+                  <h3>Boolean Attributes</h3>
+                  <p>Boolean attributes are attributes that can indicate true / false values by their presence on an element. For example, <code>disabled</code> is one of the most commonly used boolean attributes.</p>
+                  <p><code>v-bind</code> works a bit differently in this case:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&ltbutton :disabled="isButtonDisabled"&gtButton&lt/button&gt</code></pre>
+</div>
+<!-- code bloack ends -->
+                  <p>The disabled attribute will be included if isButtonDisabled has a truthy value. It will also be included if the value is an empty string, maintaining consistency with <code>&ltbutton disbled=""&gt</code> For other false values the attributes will be omitted.</p>
+                  <h3>Using JavaScript Expressions</h3>
+                  <p>So far we've only been bindings  to simple property keys in our templates. But Vue actually supports the full power of JavaScript expressions inside all data bindings:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>{{ number + 1 }}
+{{ ok ? 'YES' : 'NO'}}
+{{ message.split('').reserve().join('') }}
+&ltdiv :id="list-${id}"&gt&lt/div&gt</code></pre>
+</div>
+<!-- code blocks ends -->
+                  <p> These expressions will be evaluatd as JavaScript in the dota scope of the current component instance.</p>
+                  <p>In Vue templates, JavaScript expressions can be used in the following way:</p>
+                  <ul>
+                    <li>Inside text interpolations (musctaches)</li>
+                    <li>In the attribute value of any Vue directives (special attibutes that start with <code>v-</code>)</li>
+                  </ul>
+                  <h3>Expressions Only</h3>
+                  <p>Each binding can only contain <b>one single expressions</b>. An expression is a piece of code that can be evaluated to a value. A simple check whether it can be used after <code>return</code>.</p>
+                  <p>Therefore, the following will <b>NOT</b> work:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&lt !-- this is a statement, not an expressions: -- &gt
+  {{ var a = 1}}
+
+  &lt !-- flow control won't work either, use ternary expressions -- &gt
+  {{ if (ok) { return message } }}</code></pre>
+</div>
+<!-- code block ends -->
+                  <h3>Calling Functions</h3>
+                  <p>It is possible to call a component-exposed method inside a binding expression:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&lttime :title="toTitleDate(date)" :datetime="date"&gtMessage
+   {{ formatDate(date) }}
+&lt/time&gt</code></pre>
+</div>
+<!-- code block ends --> 
+
+                  <h4>Note</h4>
+                  <p>Functions called inside binding expressions will be called every time the component updates, so they should <b>not</b> have any side effects, such as changing data or triggering asynchronous operations.</p>
+
+                  <h3>Restricted Globals Access</h3>
+                  <p>Template expressions are sandboxed and only have access to a restricted list of globals. The list exposes commonly used built-in globals such as <code>Math</code> and <code>Date</code>.</p>
+                  <p>Globals not explicity included in the list, for example user-attached properties on <code>window</code>, will not be accessible in template expressions. You can, however, explicity define additional globals for a II Vue expressions by adding them to <code>app.config.globalProperties</code></p>
+                  <h3>Directives</h3>
+                  <p>Directives are special attributes with the <code>v-</code> prefix. Vue provides a number of built-in directive, including <code>v-html</code> and <code>v-bind</code> which we have introduced above.</p>
+                  <p>Directive attributes values are expected to be single JavaScript expressions (with the exception of <code>v-for</code>, <code>v-on</code> and <code>v-slot</code>, which will be discussed in their respective sections later). A directive's job is to reactively apply updates to the DOM when the value of its expression changes. Take <code>v-if</code> as an example:</p>
+<!--code block begins-->
+<div>
+  <pre><code>&ltp v-if="seen"&gtNow you see me&lt/p&gt</code></pre>
+</div>
+<!--code block ends-->
+                  <h3>Arguments</h3>
+                  <p>Some directives can take an "argument", denoted by a colon after teh directive name. For example, the <code>v-bind</code> directive is used to reactively update an HTML attribute:</p>
+<!-- code block starts -->
+<div>
+  <pre><code>&ltp v-if="seen"&gtNow you see me&lt/p&gt</code></pre>
+</div>
+<!-- code block ends-->
+                  <p>Here, <code>href</code> is the argument, which tell the <code>v-bind</code> directive to bind the lelement's <code>href</code> attribute to the value of the expression <code>url</code>. In the shorthand, everything before the argument (i.e., <code>v-bind:</code>) is condensed into a single character, <code>:</code>.</p>
+                  <p>Another example is the <code>v-on</code> directive, which listens to DOM events:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&lta v-on:click="doSomething"&gt ... &lt/a&gt
+
+&lt !-- shorthand -- &gt
+&lta @click="doSomething"&gt ... &lt/a&gt</code></pre>
+</div>
+<!-- code block ends-->
+                  <p>Here, the argument is the event name to listen to: <code>click</code>.<code>v-on</code> has a corresponding shorthand, namely the <code>@</code> character. We will talk about event handling in more detail too.</p>
+
+                  <h3>Dyanmic Arguments</h3>
+                  <p>It is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&lt !--Note that there are some constraints to the argument expression,
+as explained in the "Dynamic Argument Value Constraints" and "Dynamic Argument Syntax Constraints" sections below.-- &gt
+
+&lta v-bind:[atributeName]="url&gt" .. &lt/a&gtNow
+
+&lt !-- shorthand -- &gt
+&lta :[attributename]="url"&gt ... &lt/a&gt</code></pre>
+</div>
+<!-- code block ends-->
+                  <p>Here, <code>atrributeName</code> will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, If your component instance has a data property, <code>attributeName</code>, whose value is <code>"href"</code>, then this binding will be equialent to <code>v-bind:href</code>.</p>
+                  <p>Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&lta v-on:[eventName]="doSomething"> ... &lt/a&gt 
+  
+  &lt !-- shorthand -- &gt
+  &lta @[eventName]="doSomething"&gt ... &lt/a&gt</code></pre>
+</div>
+<!-- code block ends -->
+                  <p>In this example, when <code>eventName's</code> value is <code>"focus"</code>, <code>v-on:[eventName]</code> will be equivalent to <code>v-on:focus</code>.</p>
+
+                  <h3>Dyanmic Argument Value Constraints</h3>
+                  <p>Dynamic arguments are expected to evaluate to a string, with the exception of <code>null</code>. The special value <code>null</code> can be used to explicitly remove the binding. Any other non-string value will trigger a warning.</p>
+                  <h3>Dynamic Argument Syntax Constraints</h3>
+                  <p>Dynamic arguments expressions have some syntax constraints becuase certain characters, such as spaces and qoutes, are invalid inside HTML attribute names. For example, the following is invalid:</p>
+<!-- code block begins-->
+<div>
+  <pre><code>&lt !-- This will trigger a compiler warning -- &gt
+&lta:['foo' + 'bar']="value] ... &lt/a&gt"</code></pre>
+</div>
+<!-- code block ends-->
+
+                  <p>If you need to pass a complex dynamic argument, it's probably better to use a computed property, which we will cover shortly.</p>
+                  <p>When using in-DOM templates (templates directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:</p>
+<!-- code begin starts -->
+<div>
+  <pre><code>&lta :[someAttr]="value"&gt ... &lt/a&gt</code></pre>
+</div>
+<!-- code begin ends -->
+                  <p>The above will be converted to <code>:[someattr]</code> in-DOM templates. If your component has a <code>someAttr</code> property instead of <code>someattr</code>, you code won't work. Templates inside Single-File</p>
+                  <h3>Modifiers</h3>
+                  <p>Modifiers are special postfixes denoted by a dot, which indicate that a deserve should be bound in some special way. For example, the <code>.prevent</code> modifier tells the <code>v-on</code> directive to call <code>event.preventDefault()</code> on the triggered event:</p>
+<!-- code block begins -->
+<div>
+  <pre><code>&ltform @submit.prevent="onSubmit"&gt ... &lt/form&gt</code></pre>
+</div>
+<!-- code block ends -->
+                  <p>You'll see other examples of modifiers later for <code>v-on</code> and for <code>v-model</code>, when we explore those features.</p>
+                  <p>and finally, here's the full directive synta visualized:</p>
+                  <img src="/public/assets/flowchart-1.png" alt="flowchart">
+                  <hr/>
+                </div>
+                <div>
+                  <h3>Reactivity Fundamental (Composition API)</h3>
+                  <hr/>
+                  <h4>Declaring Reactive State</h4>
+                  <h5><code>Ref()</code></h5>
+                  <p>In composition API, the recommended way to declare reactive state is using the <code>ref()</code> function:</p>
+<!--code block begins -->
+<div>
+  <pre><code>import { ref } from 'vue'
+
+const count = ref(0)</code></pre>
+</div>
+<!-- code block ends -->
+                  <p><code>ref()</code> takes the argument and returns it wrapped within a ref objeect with a <code>.value</code> property:</p>
+<!--code block begins-->
+<div>
+  <pre><code>const count = ref(0)
+
+console.log(count) // { value: 0 }
+console.log(count.value)  // 1 
+
+count.value++
+console.log(count.value) // 1 </code></pre>
+</div>
+<!--code block ends-->
+                  <p>to access in a component's template. declare and return them from a component's <code>setup()</code> function:</p>
+<!--code block begins-->
+<div>
+  <pre><code>const count = ref(0)
+
+export default {
+   // `setup` is a special hook dedicated for the Composition API.
+   setup() {
+      const count = ref(0)
+
+      // expose the ref to the template 
+      return {
+        count
+      }
+   }
+}</code></pre>
+</div>
+
+<div>
+  <pre><code>&ltdiv&gt{{ count }}&lt/div&gt</code></pre>
+</div>
+<!--code block ends-->
+                   <p>Notice that we did not need to append <code>.value</code> when using the ref in the template. For convenience, refs are automatically unwrapped when used inside templates (with a few caveats).</p>
+                   <p>You can also mutate a ref directly in event handlers:"</p>
+<!--code block begins-->
+<div>
+  <pre><code>&ltbutton @click="count++"&gt 
+  {{ count }}
+&lt/button&gt</code></pre>
+</div>
+<!--code block ends-->
+                  <p>For more complex logic, we can declare functions that mutate refs in the same scope and expose them as methods alongside the state:</p>
+<!--code block begins-->
+<div>
+  <pre><code>import { ref } from 'vue'
+
+  export default {
+    setup() {
+      const count = ref(0)
+
+      function increment() {
+        // .value is needed in JavaScript 
+        count.value++
+      }
+
+      // don't forget to expose the function as well. 
+      return {
+         count,
+         increment
+      }
+    }
+  }
+}</code></pre>
+</div>
+<!--code block ends-->
+                   <p>Exposed methods can then be used as event handlers:</p>
+<!--code block begins-->
+<div>
+  <pre><code>&ltbutton @click="increment"&gt 
+  {{ count }}
+&lt/button&gt</code></pre>
+</div>
+<!--code block ends-->
+                  <h5><code>&ltscript setup&gt</code></h5>
+                  <p>Manually exposing state and methods via <code>setup()</code> can be verbose. Luckily, it can be avoided when using Single-File components (SFCs). We can simplify the usage with <code>&ltscript setup&gt</code>:</p>
+<!--code block begins-->
+<div>
+  <pre><code>&ltscript setup&gt
+import { ref } from 'vue'
+
+const count = ref(0)
+
+function increment() {
+  count.value++ 
+}
+&lt/script&gt 
+
+&lttemplate&gt
+  &ltbutton @click="increment"&gt 
+    {{ count }}
+  &lt/button&gt 
+&lt/template&gt</code></pre>
+</div>
+<!--code block ends-->
+                  <p>Top-level imports, variable and functions declared in <code>script setup</code> are automatically usable in the template of the same component. Think of the template as a JavaScript function declared in the same scope - it naturally has access to everything declared alongside it.</p>
+                <h2>Why Refs ?</h2>
+                <p>When you use a ref in a template, and change ref's value later, Vue automatically detects the change and updates the DOM accordingly. This is made possible with a dependency-tracking based reactivity system. When a component is rendered for the first time, Vue tracks every ref that was used during the render. Later on, when a ref is mutated.</p>
+                </div>
             </div>
-            </div>
+        </div>
     </main>
 
     <footer id="footer" class="footer">
@@ -157,8 +704,6 @@ button {
         
         <p>&copy; 2025 HackScrolls. All Rights Reserved.</p>
     </footer>
-
-    <!-- JavaScript at the bottom for proper loading -->
-    <script src="darkmode.js"></script>
+    <script snrc="darkmode.js"></script>
 </body>
 </html>
