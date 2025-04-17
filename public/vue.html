@@ -41,8 +41,23 @@
                     <li><a href="#wiv">What is Vue ?</a></li>
                     <li><a href="#TheProgressiveFramework">The Progressive Framework</a></li>
                     <li><a href="#Single-FileComponents">Single-File Components</a></li>
-                </ul>
-            </nav>
+                    <li><a href="#apistyle">API Style</a></li>
+                    <li><a href="#optionapi">Option API</a></li>
+                    <li><a href="#compositionapi">Composition API</a></li>
+                    <li><a href="#whichapitochoose">Which API to choose?</a></li>
+                    <li><a href="#quickstart">Quick Start</a></li>
+                    <li><a href="#creatingavueapplication">Creating a Vue Application</a></li>
+                    <li><a href="#theapplicationinstance">The Application Instance</a></li>
+                    <li><a href="#therootcomponent">The Root Component</a></li>
+                    <li><a href="#mountingapp">Mounting App</a></li>
+                    <li><a href="#indom"></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                  </ul>
+                </nav>
         </div>
         <div class="card">
             <div id="markdown-content">
@@ -63,7 +78,7 @@
 createApp({
     setup() {
         return {
-            count: ref(0)11
+            count: ref(0)
         }
     }
 }).mount('#app')</code></pre>        
@@ -124,9 +139,9 @@ button {
                 <br>
                 <hr/>
                 <br>
-                <h2>API Styles</h2>
+                <h2 id="apistyle">API Styles</h2>
                 Vue components can authored in two different API styles: <b>Options API</b> and <b>Composition API.</b>
-                <h3>Options API</h3>
+                <h3 id="optionapi">Options API</h3>
                 <ul>
                     <li><p>With this API, we define a component's logic using an object of options such as <code>data</code>, <code>methods</code> and <code>mounted.</code> Properties defined by options are exposed on <code>this</code> inside functions, which points to the components instance.</p></li>                
                 </ul>
@@ -157,7 +172,7 @@ button {
 <!--code blocks ends-->
                 <div>
                   <br>
-                    <h3>Composition API</h3>
+                    <h3 id="compositionapi">Composition API</h3>
                     <ul>
                         <li>Using this API, we define a component's logic using import API functions. In SFCs, Composition API is typically used with <code>&ltscript setup&gt</code>. The <code>setup</code> attribute is a hint that makes a Vue perform compile-time transforms that allow us to use Composition API with less boilerplate. For example, imports and top-level variables / functions declared in <code>&ltscriptsetup&gt</code> are directly usuable in the template.</li>
                         <li>The following is the same component, with the exact same template, but using Composition API and <code>&ltscript setup&gt</code> instead:</li>
@@ -190,7 +205,7 @@ onMounted(() => {
 
                 <div>
                   <br>
-                    <h3>Which API to Choose?</h3>
+                    <h3 id="whichapitochoose">Which API to Choose?</h3>
                     <ul>
                         <li><p>Both the Options API and Composition API in Vue share the same underlying system and can handle common use cases. The Options API, built on top of the Composition API, follows a class-based structure, making it beginner-friendly and familiar to those with an OOP background. It enforces organization through predefined options. In contrast, the Composition API provides more flexibility by defining reactive state within functions, allowing for better logic reuse and composition but requiring a deeper understanding of Vue's reactivity system.</p></li>
                         <li>If you are new to Vue, here's a general recommendation:</li>
